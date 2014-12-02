@@ -13,6 +13,12 @@
     <mvc:annotation-driven />
     <!-- 对包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 需要更改 -->
     <context:component-scan base-package="com.pingan.smartsearch.web.controller" />
+	<mvc:resources location="/static/dist/" mapping="/dist/**"/>
+    <mvc:resources location="/static/docs/" mapping="/docs/**"/>
+    <mvc:resources location="/static/fonts/" mapping="/fonts/**"/>
+    <mvc:resources location="/static/img/" mapping="/img/**"/>
+    <mvc:resources location="/static/js/" mapping="/js/**"/>
+	<mvc:default-servlet-handler/>
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
