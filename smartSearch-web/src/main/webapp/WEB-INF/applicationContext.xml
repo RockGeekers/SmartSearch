@@ -3,8 +3,8 @@
 <beans>
 
 
-	<bean id="searchService"
-		class="com.pingan.smartsearch.service.impl.SmartSearchServiceImpl">
+	<bean id="jarSearchService"
+		class="com.pingan.smartsearch.service.impl.JarSearchServiceImpl">
 		<property name="searchConnector">
 			<ref bean="searchConnector" />
 		</property>

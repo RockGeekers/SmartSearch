@@ -7,11 +7,13 @@ import java.util.concurrent.FutureTask;
 
 import net.sf.json.JSONObject;
 
+import com.pingan.smartsearch.bean.ArtifactBean;
+import com.pingan.smartsearch.connector.DetailFutureRunner;
 import com.pingan.smartsearch.connector.SearchConnector;
 import com.pingan.smartsearch.connector.SearchFutureRunner;
-import com.pingan.smartsearch.service.SmartSearchService;
+import com.pingan.smartsearch.service.JarSearchService;
 
-public class SmartSearchServiceImpl implements SmartSearchService {
+public class JarSearchServiceImpl implements JarSearchService {
 
 	private final ExecutorService threadPool = Executors.newCachedThreadPool();
 	private SearchConnector searchConnector;
@@ -25,9 +27,26 @@ public class SmartSearchServiceImpl implements SmartSearchService {
 			return future.get();
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
-			return null;
+			return new JSONObject();
 		}
 
+	}
+
+	@Override
+	public JSONObject detail(String groupId, String artifactId) {
+		ArtifactBean artifact = new ArtifactBean();
+		artifact.setGroupId(groupId);
+		artifact.setArtifactId(artifactId);
+		
+		FutureTask<JSONObject> future = new FutureTask<JSONObject>(new DetailFutureRunner(searchConnector, artifact));
+		threadPool.execute(future);
+		
+		try {
+			return future.get();
+		} catch (InterruptedException | ExecutionException e) {
+			e.printStackTrace();
+			return new JSONObject();
+		}
 	}
 
 	public void setSearchConnector(SearchConnector searchConnector) {
