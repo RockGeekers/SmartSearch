@@ -27,14 +27,14 @@ public class JarSearchController {
 	private JarSearchService jarSearchService;
 	
 	@RequestMapping (value="/search/{keyword}", method=RequestMethod.GET)
-	public void searchKeyword(HttpServletRequest request,HttpServletResponse response, @PathVariable String keyword) throws IOException {
+	public void searchKeyword(HttpServletResponse response, @PathVariable String keyword) throws IOException {
 		JSONObject result = jarSearchService.search(keyword);
 		response.getWriter().write(result.toString());
 		response.flushBuffer();
 	}
 	
 	@RequestMapping (value="/detail/{group}/{artifact}", method=RequestMethod.GET)
-	public void getDetail(HttpServletRequest request, HttpServletResponse response, 
+	public void getDetail(HttpServletResponse response, 
 						@PathVariable String group, @PathVariable String artifact) throws IOException {
 		JSONObject result = jarSearchService.detail(group, artifact);
 		response.getWriter().write(result.toString());

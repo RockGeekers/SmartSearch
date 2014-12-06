@@ -16,10 +16,10 @@ import com.pingan.smartsearch.connector.SearchConnector;
 
 public class JsoupSearchConnector implements SearchConnector {
 
-	private final static String PROXY = "http://www.boyunjian.com";
-	private final static String SEARCH_PROXY_URL = PROXY + "/do/jarse/s.do?keyword=";
-	private final static String DETAIL_PROXY_URL = PROXY + "/do/jarse/gadetail.do";
-	private final static int TIME_OUT = 10 * 1000;
+	private static final String PROXY = "http://www.boyunjian.com";
+	private static final String SEARCH_PROXY_URL = PROXY + "/do/jarse/s.do?keyword=";
+	private static final String DETAIL_PROXY_URL = PROXY + "/do/jarse/gadetail.do";
+	private static final int TIME_OUT = 10 * 1000;
 	
 	@Override
 	public JSONObject search(String keyword) {

@@ -8,7 +8,9 @@ public class ArtifactBean {
 	
 	private String artifactId;
 	
-	public ArtifactBean() {}
+	public ArtifactBean() {
+	    
+	}
 	
 	public ArtifactBean(String groupId, String version, String artifactId) {
 		this.groupId = groupId;
